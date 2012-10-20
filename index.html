@@ -19,8 +19,7 @@
       });
       $("#save-items").click(function() {
         var itemData = items[0].content();
-        console.log(itemData);
-        $.post("test.php", { 'data': itemData },
+        $.post("item.php", { 'data': itemData },
           function(data) {
            alert("Data Loaded: " + data);
         });
