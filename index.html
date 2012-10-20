@@ -3,15 +3,28 @@
   <meta charset="UTF-8">
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './vendor/jquery.js'></script>
+  <link rel="stylesheet" href="./style/item.css" />
   <title>A Simple ToDo app</title>
 </head>
 <body>
   <h1>ToDo App</h1>
-  <p>Enter your todo item here:</p>
-  <input class="item" type="text"/>
+  <button id="add-item">Add item</button>
+  <div class="list"></div>
+  <button id="save-items">Save Items</button>
   <script>
     $(document).ready(function() {
-      new Item($(".item"));
+      window.items = []
+      $("#add-item").click(function() {
+        items.push(new Item());
+      });
+      $("#save-items").click(function() {
+        var itemData = items[0].content();
+        console.log(itemData);
+        $.post("test.php", { 'data': itemData },
+          function(data) {
+           alert("Data Loaded: " + data);
+        });
+      });
     });
   </script>
 </body>
