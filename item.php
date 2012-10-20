@@ -1,7 +1,10 @@
 <?php
-  $item_data = $_POST['data'];
-  addItem($item_data);
-  echo "saved $item_data";
+
+  if( isset($_POST['data']) ) {
+    $item_data = $_POST['data'];
+    addItem($item_data);
+    echo "saved $item_data";
+  }
 
   function addItem($data='')
   {
