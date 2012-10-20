@@ -13,6 +13,7 @@
   <button id="save-items">Save Items</button>
   <script>
     $(document).ready(function() {
+      Item.init();
       window.items = []
       $("#add-item").click(function() {
         items.push(new Item());
