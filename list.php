@@ -1,13 +1,11 @@
 <?php
 
 if( isset($_POST['name']) && isset($_POST['id']) ) {
-  $list_id = $_POST['id'];
-  $list_name = $_POST['name'];
-  echo "saved $list_id - $list_name";
-  addList($list_id, $list_name);
-  ($list_name == "") ? deleteList($list_id) : addList($list_id, $list_name);
+  addList($_POST['id'], $_POST['name']);
 }
-
+if( isset($_POST['delete']) && isset($_POST['id']) ) {
+  deleteList($_POST['id']);
+}
 if( isset($_GET['all']) ) {
   allLists();
 }

@@ -11,17 +11,21 @@ class @List
     (if (name?) then @input.val(name) else @input.val("List"))
 
     @input.attr('id', "list-#{@id}-name")
-    $(".board").append(this.setUpView())
+    @view = this.setUpView()
+    $(".board").append(@view)
     this.save()
 
   setUpView: =>
     listContainer = $('<div class="list-container"></div>')
+    listDeleteDiv = $('<div class="list-delete"><p>x</p></div>')
+    listDeleteDiv.click this.delete
     listNameDiv = $('<div class="list-name"></div>')
     listNameDiv.append(@input)
     listItemsDiv = $('<div class="list-items"></div>')
     listItemsDiv.attr('id', "list-#{@id}-items")
     addItemDiv = $('<div class="add-item">+</div>')
     addItemDiv.click this.addItem
+    listContainer.append(listDeleteDiv)
     listContainer.append(listNameDiv)
     listContainer.append(listItemsDiv)
     listContainer.append(addItemDiv)
@@ -49,6 +53,15 @@ class @List
       data = JSON.parse data
       for i, item of data
         @items.push new Item(@id, item['id'], item['data']);
+
+  delete: =>
+    return unless confirm("Are you sure?")
+    @view.remove()
+    $.post "list.php",
+      'delete': true
+      'id': @id
+    , (data) ->
+      console.log "List save data: " + data
 
   @init: ->
     $.get "list.php",
