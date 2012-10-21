@@ -31,7 +31,7 @@ class @List
     listItemsDiv = $('<div class="list-items"></div>')
     listItemsDiv.attr('id', "list-#{@id}-items")
     # TODO convert following to class instead of id
-    addItemDiv = $('<div id="add-item">+</div>')
+    addItemDiv = $('<div class="add-item">+</div>')
     addItemDiv.click this.addItem
     listContainer.append(listNameDiv)
     listContainer.append(listItemsDiv)
