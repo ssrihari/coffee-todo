@@ -4,12 +4,16 @@
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './vendor/jquery.js'></script>
   <link rel="stylesheet" href="./style/item.css" />
+  <link rel="stylesheet" href="./style/list.css" />
   <title>A Simple ToDo app</title>
 </head>
 <body>
-  <h1>ToDo App</h1>
-  <button id="add-item">Add item</button>
-  <div class="list"></div>
+  <h1>ToDo</h1>
+  <div class="list-container">
+    <div class="list-name">This is a list.</div>
+    <div class="list"></div>
+    <div id="add-item">+</div>
+  </div>
   <script>
     $(document).ready(function() {
       Item.init();

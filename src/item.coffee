@@ -4,7 +4,7 @@ class @Item
 
   constructor: (id, data) ->
     Item.COUNT++
-    @input = $('<input class="item" type="text"/>')
+    @input = $('<input type="text"/>')
     @input.keyup this.itemChanged
 
     switch arguments.length
@@ -15,7 +15,9 @@ class @Item
         @input.val(data)
 
     @input.attr('id', "item-#{@id}")
-    $(".list").append(@input)
+    inputDiv = $('<div class="item"></div>')
+    inputDiv.append(@input)
+    $(".list").append(inputDiv)
 
   content: ->
     $(this.input).val()
