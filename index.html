@@ -10,13 +10,11 @@
   <h1>ToDo App</h1>
   <button id="add-item">Add item</button>
   <div class="list"></div>
-  <button id="save-items">Save Items</button>
   <script>
     $(document).ready(function() {
       Item.init();
-      window.items = []
       $("#add-item").click(function() {
-        items.push(new Item());
+        Item.all[Item.COUNT+1] = new Item();
       });
       $("#save-items").click(function() {
         var itemData = items[0].content();
