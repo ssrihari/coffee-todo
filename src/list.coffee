@@ -12,6 +12,8 @@ class @List
 
     @input.attr('id', "list-#{@id}-name")
     $(".board").append(this.setUpView())
+    this.save()
+    console.log("here")
 
   setUpView: =>
     listContainer = $('<div class="list-container"></div>')
