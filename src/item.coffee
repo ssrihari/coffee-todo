@@ -17,7 +17,7 @@ class @Item
     @input.attr('id', "item-#{@id}")
     inputDiv = $('<div class="item"></div>')
     inputDiv.append(@input)
-    $(".list").append(inputDiv)
+    $(".list-items").append(inputDiv)
 
   content: ->
     $(this.input).val()

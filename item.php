@@ -4,7 +4,7 @@ if( isset($_POST['data']) && isset($_POST['id']) ) {
   $item_data = $_POST['data'];
   $item_id = $_POST['id'];
   echo "saved $item_id - $item_data";
-  addItem($item_data, $item_id);
+  ($item_data == "") ? deleteItem($item_id) : addItem($item_data, $item_id);
 }
 
 if( isset($_GET['all']) ) {
@@ -34,6 +34,14 @@ function addItem($data, $id) {
   $table_name="items";
   $con = connect();
   $query = "INSERT INTO $table_name (id, data) VALUES ($id,'$data') ON DUPLICATE KEY UPDATE data='$data'";
+  mysql_query($query);
+  mysql_close($con);
+}
+
+function deleteItem($id) {
+  $table_name="items";
+  $con = connect();
+  $query = "DELETE FROM $table_name WHERE id=$id";
   mysql_query($query);
   mysql_close($con);
 }

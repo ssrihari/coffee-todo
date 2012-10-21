@@ -1,8 +1,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './vendor/jquery.js'></script>
+  <script type="text/javascript" src = './lib/item.js'></script>
+  <script type="text/javascript" src = './lib/list.js'></script>
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/style.css" />
   <link rel="stylesheet" href="./style/item.css" />
@@ -11,17 +12,10 @@
 </head>
 <body>
   <h1>ToDo</h1>
-  <div class="list-container">
-    <div class="list-name">This is a list.</div>
-    <div class="list"></div>
-    <div id="add-item">+</div>
-  </div>
+  <div class="board"></div>
   <script>
     $(document).ready(function() {
-      Item.init();
-      $("#add-item").click(function() {
-        Item.all[Item.COUNT+1] = new Item();
-      });
+      List.init();
     });
   </script>
 </body>
