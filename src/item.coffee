@@ -10,13 +10,12 @@ class @Item
     switch arguments.length
       when 0
         @id = Item.COUNT
-        @input.attr('id', "item-#{Item.COUNT}")
-        $(".list").append(@input)
       when 2
         @id = id
-        @input.attr('id', "item-#{id}")
         @input.val(data)
-        $(".list").append(@input)
+
+    @input.attr('id', "item-#{@id}")
+    $(".list").append(@input)
 
   content: ->
     $(this.input).val()
