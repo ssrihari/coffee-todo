@@ -7,14 +7,8 @@ class @List
     @items = []
     @input = $('<input type="text"/>')
     @input.keyup this.listNameChanged
-
-    switch arguments.length
-      when 0
-        @id = List.COUNT
-        @input.val('List')
-      when 2
-        @id = id
-        @input.val(name)
+    @id = (if (id?) then id else List.COUNT)
+    (if (name?) then @input.val(name) else @input.val("List"))
 
     @input.attr('id', "list-#{@id}-name")
     $(".board").append(this.setUpView())
