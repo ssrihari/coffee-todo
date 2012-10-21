@@ -12,10 +12,15 @@
 </head>
 <body>
   <h1>ToDo</h1>
-  <div class="board"></div>
+  <div class="board">
+    <button id="add-list">Add list</button>
+  </div>
   <script>
     $(document).ready(function() {
       List.init();
+      $("#add-list").click(function() {
+        List.all[List.COUNT+1] = new List()
+      });
     });
   </script>
 </body>

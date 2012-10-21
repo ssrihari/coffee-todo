@@ -1,23 +1,18 @@
 class @Item
   @COUNT: 0
-  @all: {}
 
-  constructor: (id, data) ->
+  constructor: (listID, id, data) ->
     Item.COUNT++
+    @listID = listID
+    @id = (if (id?) then id else Item.COUNT)
     @input = $('<input type="text"/>')
+    @input.attr('id', "list-#{@listID}-item-#{@id}")
+    @input.val(data) if data?
     @input.keyup this.itemChanged
 
-    switch arguments.length
-      when 0
-        @id = Item.COUNT
-      when 2
-        @id = id
-        @input.val(data)
-
-    @input.attr('id', "item-#{@id}")
     inputDiv = $('<div class="item"></div>')
     inputDiv.append(@input)
-    $(".list-items").append(inputDiv)
+    $("#list-#{@listID}-items").append(inputDiv)
 
   content: ->
     $(this.input).val()
@@ -25,16 +20,15 @@ class @Item
   save: ->
     console.log("save called")
     itemData = this.content()
-    id = this.id
     $.post "item.php",
       data: itemData
-      'id': id
+      'id': @id
+      'list_id': @listID
     , (data) ->
       console.log "Data Loaded: " + data
 
-  itemChanged: ->
-    id = $(this).attr('id').split("-")[1]
-    Item.all[id].save()
+  itemChanged: =>
+    this.save()
 
   @init: ->
     $.get "item.php",

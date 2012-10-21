@@ -1,10 +1,11 @@
 <?php
 
-if( isset($_POST['data']) && isset($_POST['id']) ) {
+if( isset($_POST['data']) && isset($_POST['id']) && isset($_POST['list_id']) ) {
   $item_data = $_POST['data'];
   $item_id = $_POST['id'];
+  $list_id = $_POST['list_id'];
   echo "saved $item_id - $item_data";
-  ($item_data == "") ? deleteItem($item_id) : addItem($item_data, $item_id);
+  ($item_data == "") ? deleteItem($item_id) : addItem($item_id, $item_data, $list_id);
 }
 
 if( isset($_GET['all']) ) {
@@ -30,10 +31,10 @@ function mysql_fetch_all($result) {
   print json_encode($rows);
 }
 
-function addItem($data, $id) {
+function addItem($id, $data, $list_id) {
   $table_name="items";
   $con = connect();
-  $query = "INSERT INTO $table_name (id, data) VALUES ($id,'$data') ON DUPLICATE KEY UPDATE data='$data'";
+  $query = "INSERT INTO $table_name (id, data, list_id) VALUES ($id, '$data', $list_id) ON DUPLICATE KEY UPDATE data='$data', list_id=$list_id";
   mysql_query($query);
   mysql_close($con);
 }
