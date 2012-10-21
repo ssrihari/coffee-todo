@@ -16,7 +16,6 @@ class @List
         @id = id
         @input.val(name)
 
-    # TODO refactor following into a set up method
     @input.attr('id', "list-#{@id}-name")
     $(".board").append(this.setUpView())
 
@@ -30,7 +29,6 @@ class @List
     listNameDiv.append(@input)
     listItemsDiv = $('<div class="list-items"></div>')
     listItemsDiv.attr('id', "list-#{@id}-items")
-    # TODO convert following to class instead of id
     addItemDiv = $('<div class="add-item">+</div>')
     addItemDiv.click this.addItem
     listContainer.append(listNameDiv)
