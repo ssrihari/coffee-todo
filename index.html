@@ -16,13 +16,6 @@
       $("#add-item").click(function() {
         Item.all[Item.COUNT+1] = new Item();
       });
-      $("#save-items").click(function() {
-        var itemData = items[0].content();
-        $.post("item.php", { 'data': itemData },
-          function(data) {
-           alert("Data Loaded: " + data);
-        });
-      });
     });
   </script>
 </body>
