@@ -1,3 +1,8 @@
 create schema todo;
 use todo;
-create table items (id INT NOT NULL AUTO_INCREMENT primary key, data varchar(200));
+
+create table items(
+  id INT NOT NULL AUTO_INCREMENT primary key,
+  data varchar(200),
+  list_id INT NOT NULL
+);
