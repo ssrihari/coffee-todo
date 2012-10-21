@@ -9,9 +9,11 @@ class @Item
 
     switch arguments.length
       when 0
+        @id = Item.COUNT
         @input.attr('id', "item-#{Item.COUNT}")
         $(".list").append(@input)
       when 2
+        @id = id
         @input.attr('id', "item-#{id}")
         @input.val(data)
         $(".list").append(@input)
@@ -20,16 +22,18 @@ class @Item
     $(this.input).val()
 
   save: ->
+    console.log("save called")
     itemData = this.content()
+    id = this.id
     $.post "item.php",
       data: itemData
+      'id': id
     , (data) ->
-      alert "Data Loaded: " + data
+      console.log "Data Loaded: " + data
 
   itemChanged: ->
     id = $(this).attr('id').split("-")[1]
     Item.all[id].save()
-    console.log("save called for:"+Item.all[id].content())
 
   @init: ->
     $.get "item.php",

@@ -1,9 +1,10 @@
 <?php
 
-if( isset($_POST['data']) ) {
+if( isset($_POST['data']) && isset($_POST['id']) ) {
   $item_data = $_POST['data'];
-  addItem($item_data);
-  echo "saved $item_data";
+  $item_id = $_POST['id'];
+  echo "saved $item_id - $item_data";
+  addItem($item_data, $item_id);
 }
 
 if( isset($_GET['all']) ) {
@@ -29,10 +30,10 @@ function mysql_fetch_all($result) {
   print json_encode($rows);
 }
 
-function addItem($data='') {
+function addItem($data, $id) {
   $table_name="items";
   $con = connect();
-  $query = "INSERT INTO $table_name (data) VALUES ('$data')";
+  $query = "INSERT INTO $table_name (id, data) VALUES ($id,'$data') ON DUPLICATE KEY UPDATE data='$data'";
   mysql_query($query);
   mysql_close($con);
 }
