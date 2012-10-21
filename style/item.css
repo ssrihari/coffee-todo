@@ -2,7 +2,7 @@
   border-bottom: 1px dashed;
   color: darkgrey;
 }
-input{
+input {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 0.9em;
   color: #1E1E1E;
@@ -11,4 +11,7 @@ input{
   background: transparent;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+input:focus {
+  border: 0;
 }

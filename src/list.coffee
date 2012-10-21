@@ -6,7 +6,7 @@ class @List
     List.COUNT++
     @items = []
     @input = $('<input type="text"/>')
-    @input.keyup this.listNameChanged
+    @input.keyup this.save
     @id = (if (id?) then id else List.COUNT)
     (if (name?) then @input.val(name) else @input.val("List"))
 
@@ -30,22 +30,16 @@ class @List
     listContainer.append(addItemDiv)
     listContainer
 
-  content: ->
-    $(this.input).val()
+  content: =>
+    @input.val()
 
-  save: ->
-    # console.log("save called")
-    # listData = this.content()
-    # id = this.id
-    # $.post "list.php",
-    #   data: listData
-    #   'id': id
-    # , (data) ->
-    #   console.log "Data Loaded: " + data
-
-  listNameChanged: ->
-    # id = $(this).attr('id').split("-")[1]
-    # List.all[id].save()
+  save: =>
+    listName = this.content()
+    $.post "list.php",
+      'name': listName
+      'id': @id
+    , (data) ->
+      console.log "Data Loaded: " + data
 
   @init: ->
     List.all[1] = new List()
