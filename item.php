@@ -8,8 +8,9 @@ if( isset($_POST['data']) && isset($_POST['id']) && isset($_POST['list_id']) ) {
   ($item_data == "") ? deleteItem($item_id) : addItem($item_id, $item_data, $list_id);
 }
 
-if( isset($_GET['all']) ) {
-  allItems();
+if( isset($_GET['list_id']) ) {
+  $list_id = $_GET['list_id'];
+  itemsForList($list_id);
 }
 
 function connect() {
@@ -47,10 +48,10 @@ function deleteItem($id) {
   mysql_close($con);
 }
 
-function allItems() {
+function itemsForList($list_id) {
   $table_name="items";
   $con = connect();
-  $query = "SELECT * FROM $table_name";
+  $query = "SELECT * FROM $table_name WHERE list_id=$list_id";
   $result = mysql_query($query);
   $res = mysql_fetch_all($result);
   mysql_free_result($result);

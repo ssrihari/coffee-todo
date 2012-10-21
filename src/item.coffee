@@ -26,13 +26,3 @@ class @Item
       'list_id': @listID
     , (data) ->
       console.log "Data Loaded: " + data
-
-  @init: ->
-    $.get "item.php",
-      all: "true"
-    , (data) ->
-      data = JSON.parse data
-      for i, item of data
-        console.log(item['id']+'-'+item['data'])
-        Item.all[item['id']] = new Item(item['id'], item['data']);
-

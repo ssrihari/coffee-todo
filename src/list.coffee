@@ -13,10 +13,6 @@ class @List
     @input.attr('id', "list-#{@id}-name")
     $(".board").append(this.setUpView())
 
-  addItem: =>
-    console.log(@id)
-    @items.push new Item(@id)
-
   setUpView: =>
     listContainer = $('<div class="list-container"></div>')
     listNameDiv = $('<div class="list-name"></div>')
@@ -30,6 +26,10 @@ class @List
     listContainer.append(addItemDiv)
     listContainer
 
+  addItem: =>
+    console.log(@id)
+    @items.push new Item(@id)
+
   content: =>
     @input.val()
 
@@ -41,10 +41,20 @@ class @List
     , (data) ->
       console.log "List save data: " + data
 
+  fetchItems: =>
+    $.get "item.php",
+      list_id: @id
+    , (data) =>
+      data = JSON.parse data
+      for i, item of data
+        @items.push new Item(@id, item['id'], item['data']);
+
   @init: ->
     $.get "list.php",
       all: "true"
     , (data) ->
       data = JSON.parse data
       for i, list of data
-        List.all.push new List(list['id'], list['name']);
+        list = new List(list['id'], list['name']);
+        List.all.push list
+        list.fetchItems()
