@@ -8,7 +8,7 @@ class @Item
     @input = $('<input type="text"/>')
     @input.attr('id', "list-#{@listID}-item-#{@id}")
     @input.val(data) if data?
-    @input.keyup this.itemChanged
+    @input.keyup this.save
 
     inputDiv = $('<div class="item"></div>')
     inputDiv.append(@input)
@@ -17,7 +17,7 @@ class @Item
   content: ->
     $(this.input).val()
 
-  save: ->
+  save: =>
     console.log("save called")
     itemData = this.content()
     $.post "item.php",
@@ -26,9 +26,6 @@ class @Item
       'list_id': @listID
     , (data) ->
       console.log "Data Loaded: " + data
-
-  itemChanged: =>
-    this.save()
 
   @init: ->
     $.get "item.php",
