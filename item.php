@@ -14,13 +14,11 @@ if( isset($_GET['list_id']) ) {
 }
 
 function connect() {
-  $host="localhost";
-  $username="root";
-  $password="srihari";
-  $db_name="todo";
-
-  $con = mysql_connect("$host", "$username", "$password")or die("cannot connect");
-  mysql_select_db("$db_name")or die("cannot select DB");
+  $con = mysql_connect(
+  $server = getenv('MYSQL_DB_HOST'),
+  $username = getenv('MYSQL_USERNAME'),
+  $password = getenv('MYSQL_PASSWORD'));
+  mysql_select_db(getenv('MYSQL_DB_NAME'));
   return $con;
 }
 
