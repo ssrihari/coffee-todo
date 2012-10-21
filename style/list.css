@@ -1,5 +1,5 @@
 .list-container {
-  margin-top: 20px;
+  margin: 15px;
   width: 250px;
   padding: 20px;
   background: rgba(240,255,255, 0.4);
@@ -12,6 +12,8 @@
   -webkit-border-radius: 12px;
   -moz-border-radius: 7px;
   border-radius: 7px;
+  display: inline-block;
+  vertical-align: top;
 
 }
 
