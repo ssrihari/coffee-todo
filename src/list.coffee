@@ -1,6 +1,6 @@
 class @List
   @COUNT: 0
-  @all: {}
+  @all: []
 
   constructor: (id, name) ->
     List.COUNT++
@@ -39,16 +39,12 @@ class @List
       'name': listName
       'id': @id
     , (data) ->
-      console.log "Data Loaded: " + data
+      console.log "List save data: " + data
 
   @init: ->
-    List.all[1] = new List()
-    # Item.init()
-    # $.get "list.php",
-    #   all: "true"
-    # , (data) ->
-    #   data = JSON.parse data
-    #   for i, list of data
-    #     console.log(list['id']+'-'+list['data'])
-    #     List.all[list['id']] = new List(list['id'], list['data']);
-
+    $.get "list.php",
+      all: "true"
+    , (data) ->
+      data = JSON.parse data
+      for i, list of data
+        List.all.push new List(list['id'], list['name']);

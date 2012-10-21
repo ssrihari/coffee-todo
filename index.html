@@ -19,7 +19,7 @@
     $(document).ready(function() {
       List.init();
       $("#add-list").click(function() {
-        List.all[List.COUNT+1] = new List()
+        List.all.push(new List())
       });
     });
   </script>
