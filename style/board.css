@@ -1,11 +1,15 @@
 .board {
 }
 
-.board-name {
+.board-names {
   font-size: 2em;
-  font-family: 'Cantora One', sans-serif;
+  font-family: 'Marcellus SC', sans-serif;
   display: inline;
   display: inline-block;
   vertical-align: top;
   cursor: hand
+}
+
+.board-name {
+  display: inline;
 }

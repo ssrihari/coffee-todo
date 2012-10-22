@@ -4,7 +4,7 @@
   <script type="text/javascript" src = './vendor/jquery.js'></script>
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './lib/list.js'></script>
-  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Cantora+One' />
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Marcellus+SC' />
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/style.css" />
   <link rel="stylesheet" href="./style/board.css" />
@@ -15,14 +15,16 @@
 </head>
 <body>
   <div class="h1">ToDo</div>
-  <div class="board-name"> | Board</div>
-  <div class="board">
+  <div class="board-names">
+    <div class="board-name"> | General</div>
+    <div class="board-name">| Important</div>
   </div>
+  <div class="board"></div>
   <script>
     $(document).ready(function() {
       List.init();
       $(".board-name").click(function() {
-        List.all.push(new List())
+        List.all.push(new List());
       });
     });
   </script>
