@@ -1,14 +1,14 @@
-class @List
+class @Board
   @COUNT: 0
   @all: []
 
   constructor: (id, name) ->
-    List.COUNT++
-    @items = []
+    Board.COUNT++
+    @lists = []
     @input = $('<input type="text"/>')
     @input.keyup this.save
-    @id = (if (id?) then id else List.COUNT)
-    (if (name?) then @input.val(name) else @input.val("List"))
+    @id = (if (id?) then id else Board.COUNT)
+    (if (name?) then @input.val(name) else @input.val("Board"))
 
     @input.attr('id', "list-#{@id}-name")
     @view = this.setUpView()
@@ -44,7 +44,7 @@ class @List
       'name': listName
       'id': @id
     , (data) ->
-      console.log "List save data: " + data
+      console.log "Board save data: " + data
 
   fetchItems: =>
     $.get "item.php",
@@ -61,7 +61,7 @@ class @List
       'delete': true
       'id': @id
     , (data) ->
-      console.log "List save data: " + data
+      console.log "Board save data: " + data
 
   @init: ->
     $.get "list.php",
@@ -69,6 +69,6 @@ class @List
     , (data) ->
       data = JSON.parse data
       for i, list of data
-        list = new List(list['id'], list['name']);
-        List.all.push list
+        list = new Board(list['id'], list['name']);
+        Board.all.push list
         list.fetchItems()

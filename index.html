@@ -17,14 +17,15 @@
 <body>
   <div class="h1">ToDo</div>
   <div class="board-names">
-    <div class="board-name">| General</div>
-    <div class="board-name">| Important</div>
+    <input type="text" class="board-name" value="General" />
+    <p class="board-name-separator">|</p>
+    <input type="text" class="board-name" value="Important" />
   </div>
   <div class="board"></div>
   <script>
     $(document).ready(function() {
       List.init();
-      $(".board-name").click(function() {
+      $(".board-name").dblclick(function() {
         List.all.push(new List());
       });
     });

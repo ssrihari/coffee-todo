@@ -2,14 +2,26 @@
 }
 
 .board-names {
-  font-size: 2em;
-  font-family: 'Marcellus SC', sans-serif;
-  display: inline;
   display: inline-block;
   vertical-align: top;
   cursor: hand
 }
 
 .board-name {
-  display: inline;
+  width: 20%;
+  color: lightgrey;
+  font-size: 2em;
+  text-align: center;
+  font-family: 'Marcellus SC', sans-serif;
+  display: inline-block;
+}
+
+.board-name-separator {
+  padding-right: 2%;
+  width: 2%;
+  color: lightgrey;
+  font-size: 2em;
+  text-align: center;
+  font-family: 'Marcellus SC', sans-serif;
+  display: inline-block;
 }

@@ -1,6 +1,5 @@
 class @List
   @COUNT: 0
-  @all: []
 
   constructor: (id, name) ->
     List.COUNT++
