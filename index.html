@@ -4,21 +4,24 @@
   <script type="text/javascript" src = './vendor/jquery.js'></script>
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './lib/list.js'></script>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Cantora+One' />
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/style.css" />
-  <link rel="stylesheet" href="./style/item.css" />
+  <link rel="stylesheet" href="./style/board.css" />
   <link rel="stylesheet" href="./style/list.css" />
+  <link rel="stylesheet" href="./style/item.css" />
+
   <title>A Simple ToDo app</title>
 </head>
 <body>
-  <h1>ToDo</h1>
-  <button id="add-list">Add list</button>
+  <div class="h1">ToDo</div>
+  <div class="board-name"> | Board</div>
   <div class="board">
   </div>
   <script>
     $(document).ready(function() {
       List.init();
-      $("#add-list").click(function() {
+      $(".board-name").click(function() {
         List.all.push(new List())
       });
     });

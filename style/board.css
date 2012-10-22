@@ -1,0 +1,11 @@
+.board {
+}
+
+.board-name {
+  font-size: 2em;
+  font-family: 'Cantora One', sans-serif;
+  display: inline;
+  display: inline-block;
+  vertical-align: top;
+  cursor: hand
+}

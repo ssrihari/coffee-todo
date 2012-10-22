@@ -5,7 +5,9 @@ body {
   color: lightgrey;
   padding: 10px;
 }
-h1 {
+.h1 {
   font-size: 2em;
   font-family: Impact, Charcoal, sans-serif;
+  display: inline-block;
+  vertical-align: top;
 }
