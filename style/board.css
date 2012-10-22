@@ -13,10 +13,12 @@
   font-size: 2em;
   text-align: center;
   font-family: 'Marcellus SC', sans-serif;
+  vertical-align: top;
   display: inline-block;
 }
 
 .board-name-separator {
+  vertical-align: top;
   padding-right: 2%;
   width: 2%;
   color: lightgrey;
