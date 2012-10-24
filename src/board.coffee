@@ -17,7 +17,7 @@ class @Board
     boardNamesDiv = $(".board-names")
     boardNamesDiv.append('<p class="board-name-separator">&nbsp|&nbsp</p>')
     boardNamesDiv.append(@boardNameView)
-    # @boardNameView.dblclick this.changeName
+    @boardNameView.dblclick this.changeName
     @view = $('<div class="board"></div>')
     @view.attr('id', "board-#{@id}")
     $(".boards").append(@view)
@@ -28,11 +28,11 @@ class @Board
   content: =>
     @boardNameView.text()
 
-  # changeName: =>
-  #   name = prompt("Enter your Board's new name:", this.content());
-  #   if name
-  #     @boardNameView.text(name)
-  #     this.save()
+  changeName: =>
+    name = prompt("Enter your Board's new name:", this.content());
+    if name
+      @boardNameView.text(name)
+      this.save()
 
 
   save: =>

@@ -13,6 +13,7 @@
   font-family: 'Marcellus SC', sans-serif;
   vertical-align: top;
   display: inline-block;
+  cursor:hand;
 }
 
 .board-name-separator {
