@@ -52,6 +52,7 @@ function listsForBoard($board_id) {
   $res = mysql_fetch_all($result);
   mysql_free_result($result);
   mysql_close($con);
-  return $res;
+  echo $res;
+  // return $res;
 }
 ?>

@@ -46,10 +46,13 @@ class @Board
   fetchLists: =>
     $.get "list.php",
       board_id: @id
+      all: "true"
     , (data) =>
       data = JSON.parse data
       for i, list of data
-        @lists.push new List(list['id'], list['name']);
+        list = new List(@id, list['id'], list['name']);
+        @lists.push list
+        list.fetchItems()
 
   # delete: =>
   #   return unless confirm("Are you sure?")

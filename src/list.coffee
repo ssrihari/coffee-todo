@@ -1,9 +1,10 @@
 class @List
   @COUNT: 0
 
-  constructor: (id, name) ->
+  constructor: (board_id, id, name) ->
     #TODO Refactor to fit pattern as in Board
     List.COUNT++
+    @board_id = board_id
     @items = []
     @input = $('<input type="text"/>')
     @input.keyup this.save
@@ -12,7 +13,7 @@ class @List
 
     @input.attr('id', "list-#{@id}-name")
     @view = this.setUpView()
-    $(".board").append(@view)
+    $("#board-#{@board_id}").append(@view)
     this.save()
 
   setUpView: =>
@@ -62,13 +63,3 @@ class @List
       'id': @id
     , (data) ->
       console.log "List save data: " + data
-
-  @init: ->
-    $.get "list.php",
-      all: "true"
-    , (data) ->
-      data = JSON.parse data
-      for i, list of data
-        list = new List(list['id'], list['name']);
-        List.all.push list
-        list.fetchItems()
