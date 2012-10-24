@@ -2,73 +2,73 @@ class @Board
   @COUNT: 0
   @all: []
 
-  constructor: (id, name) ->
+  constructor: (id) ->
     Board.COUNT++
     @lists = []
-    @input = $('<input type="text"/>')
-    @input.keyup this.save
+    @boardNameView = $('<span type="text" class="board-name"></span>')
+    name = prompt("Enter your new Board's name:", "Board");
     @id = (if (id?) then id else Board.COUNT)
-    (if (name?) then @input.val(name) else @input.val("Board"))
+    (if (name) then @boardNameView.text(name) else @boardNameView.text("Board"))
 
-    @input.attr('id', "list-#{@id}-name")
-    @view = this.setUpView()
-    $(".board").append(@view)
+    this.setUpView()
     this.save()
 
   setUpView: =>
-    listContainer = $('<div class="list-container"></div>')
-    listDeleteDiv = $('<div class="list-delete"><p>x</p></div>')
-    listDeleteDiv.click this.delete
-    listNameDiv = $('<div class="list-name"></div>')
-    listNameDiv.append(@input)
-    listItemsDiv = $('<div class="list-items"></div>')
-    listItemsDiv.attr('id', "list-#{@id}-items")
-    addItemDiv = $('<div class="add-item">+</div>')
-    addItemDiv.click this.addItem
-    listContainer.append(listDeleteDiv)
-    listContainer.append(listNameDiv)
-    listContainer.append(listItemsDiv)
-    listContainer.append(addItemDiv)
-    listContainer
+    boardNamesDiv = $(".board-names")
+    boardNamesDiv.append('<p class="board-name-separator">&nbsp|&nbsp</p>')
+    boardNamesDiv.append(@boardNameView)
+    # @boardNameView.dblclick this.changeName
+    @view = $('<div class="board"></div>')
+    @view.attr('id', "board-#{@id}")
+    $(".boards").append(@view)
 
-  addItem: =>
-    console.log(@id)
-    @items.push new Item(@id)
+  addList: =>
+    @lists.push new List(@id)
 
   content: =>
-    @input.val()
+    @boardNameView.text()
+
+  # changeName: =>
+  #   name = prompt("Enter your Board's new name:", this.content());
+  #   if name
+  #     @boardNameView.text(name)
+  #     this.save()
+
 
   save: =>
-    listName = this.content()
-    $.post "list.php",
-      'name': listName
+    boardName = this.content()
+    $.post "board.php",
+      'name': boardName
       'id': @id
     , (data) ->
       console.log "Board save data: " + data
 
-  fetchItems: =>
-    $.get "item.php",
-      list_id: @id
-    , (data) =>
-      data = JSON.parse data
-      for i, item of data
-        @items.push new Item(@id, item['id'], item['data']);
+  # fetchItems: =>
+  #   $.get "item.php",
+  #     list_id: @id
+  #   , (data) =>
+  #     data = JSON.parse data
+  #     for i, item of data
+  #       @lists.push new Item(@id, item['id'], item['data']);
 
-  delete: =>
-    return unless confirm("Are you sure?")
-    @view.remove()
-    $.post "list.php",
-      'delete': true
-      'id': @id
-    , (data) ->
-      console.log "Board save data: " + data
+  # delete: =>
+  #   return unless confirm("Are you sure?")
+  #   @view.remove()
+  #   $.post "list.php",
+  #     'delete': true
+  #     'id': @id
+  #   , (data) ->
+  #     console.log "Board save data: " + data
 
   @init: ->
-    $.get "list.php",
-      all: "true"
-    , (data) ->
-      data = JSON.parse data
-      for i, list of data
-        list = new Board(list['id'], list['name']);
-        Board.all.push list
-        list.fetchItems()
+    Board.all.push(new Board());
+
+  # @init: ->
+  #   $.get "list.php",
+  #     all: "true"
+  #   , (data) ->
+  #     data = JSON.parse data
+  #     for i, list of data
+  #       list = new Board(list['id'], list['name']);
+  #       Board.all.push list
+  #       list.fetchItems()

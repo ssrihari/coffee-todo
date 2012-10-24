@@ -2,6 +2,7 @@ class @Item
   @COUNT: 0
 
   constructor: (listID, id, data) ->
+    #TODO Refactor to fit pattern as in Board
     Item.COUNT++
     @listID = listID
     @id = (if (id?) then id else Item.COUNT)

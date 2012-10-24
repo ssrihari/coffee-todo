@@ -2,6 +2,7 @@ class @List
   @COUNT: 0
 
   constructor: (id, name) ->
+    #TODO Refactor to fit pattern as in Board
     List.COUNT++
     @items = []
     @input = $('<input type="text"/>')
