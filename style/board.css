@@ -18,6 +18,10 @@
   vertical-align: top;
   display: inline-block;
   cursor:hand;
+  padding: 3px;
+}
+.board-name.active {
+  background: rgba(240,255,255, 0.2);
 }
 
 .board-name-separator {

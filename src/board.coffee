@@ -19,6 +19,7 @@ class @Board
     boardNamesDiv.append('<p class="board-name-separator">&nbsp|&nbsp</p>')
     boardNamesDiv.append(@boardNameView)
     @boardNameView.dblclick this.changeName
+    @boardNameView.click this.makeActive
     @view = $('<div class="board"></div>')
     @view.attr('id', "board-#{@id}")
     $(".boards").append(@view)
@@ -54,6 +55,14 @@ class @Board
         @lists.push list
         list.fetchItems()
 
+  makeActive: =>
+    for board in Board.all
+      board.view.hide()
+      board.boardNameView.removeClass('active')
+    @view.show()
+    @boardNameView.addClass('active')
+    console.log("Board #{@id} is now active")
+
   # delete: =>
   #   return unless confirm("Are you sure?")
   #   @view.remove()
@@ -72,3 +81,4 @@ class @Board
         board = new Board(board['id'], board['name']);
         Board.all.push board
         board.fetchLists()
+      Board.all[0].makeActive()
