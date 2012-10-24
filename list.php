@@ -7,7 +7,8 @@ if( isset($_POST['delete']) && isset($_POST['id']) ) {
   deleteList($_POST['id']);
 }
 if( isset($_GET['all']) ) {
-  allLists();
+  $board_id = $_GET['board_id'];
+  listsForBoard($board_id);
 }
 
 function connect() {
@@ -43,10 +44,10 @@ function deleteList($id) {
   mysql_close($con);
 }
 
-function allLists() {
+function listsForBoard($board_id) {
   $table_name="lists";
   $con = connect();
-  $query = "SELECT * FROM $table_name";
+  $query = "SELECT * FROM $table_name where board_id=$board_id";
   $result = mysql_query($query);
   $res = mysql_fetch_all($result);
   mysql_free_result($result);

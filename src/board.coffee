@@ -2,12 +2,13 @@ class @Board
   @COUNT: 0
   @all: []
 
-  constructor: (id) ->
+  constructor: (id, name) ->
     Board.COUNT++
     @lists = []
     @boardNameView = $('<span type="text" class="board-name"></span>')
-    name = prompt("Enter your new Board's name:", "Board");
     @id = (if (id?) then id else Board.COUNT)
+
+    name = prompt("Enter your new Board's name:", "Board") unless name
     (if (name) then @boardNameView.text(name) else @boardNameView.text("Board"))
 
     this.setUpView()
@@ -34,7 +35,6 @@ class @Board
       @boardNameView.text(name)
       this.save()
 
-
   save: =>
     boardName = this.content()
     $.post "board.php",
@@ -43,13 +43,13 @@ class @Board
     , (data) ->
       console.log "Board save data: " + data
 
-  # fetchItems: =>
-  #   $.get "item.php",
-  #     list_id: @id
-  #   , (data) =>
-  #     data = JSON.parse data
-  #     for i, item of data
-  #       @lists.push new Item(@id, item['id'], item['data']);
+  fetchLists: =>
+    $.get "list.php",
+      board_id: @id
+    , (data) =>
+      data = JSON.parse data
+      for i, list of data
+        @lists.push new List(list['id'], list['name']);
 
   # delete: =>
   #   return unless confirm("Are you sure?")
@@ -61,14 +61,11 @@ class @Board
   #     console.log "Board save data: " + data
 
   @init: ->
-    Board.all.push(new Board());
-
-  # @init: ->
-  #   $.get "list.php",
-  #     all: "true"
-  #   , (data) ->
-  #     data = JSON.parse data
-  #     for i, list of data
-  #       list = new Board(list['id'], list['name']);
-  #       Board.all.push list
-  #       list.fetchItems()
+    $.get "board.php",
+      all: "true"
+    , (data) ->
+      data = JSON.parse data
+      for i, board of data
+        board = new Board(board['id'], board['name']);
+        Board.all.push board
+        board.fetchLists()

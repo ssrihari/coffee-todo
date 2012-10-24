@@ -8,7 +8,10 @@ create table boards(
 
 create table lists(
   id INT NOT NULL AUTO_INCREMENT primary key,
-  name varchar(200)
+  name varchar(200),
+  board_id INT NOT NULL,
+  FOREIGN KEY (board_id) REFERENCES boards(id) ON DELETE CASCADE
+
 ) ENGINE = INNODB;
 
 create table items(
