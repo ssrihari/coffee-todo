@@ -1,7 +1,7 @@
 <?php
 
-if( isset($_POST['name']) && isset($_POST['id']) ) {
-  addList($_POST['id'], $_POST['name']);
+if( isset($_POST['name']) && isset($_POST['id']) && isset($_POST['board_id']) ) {
+  addList($_POST['id'], $_POST['name'], $_POST['board_id']);
 }
 if( isset($_POST['delete']) && isset($_POST['id']) ) {
   deleteList($_POST['id']);
@@ -28,10 +28,10 @@ function mysql_fetch_all($result) {
   print json_encode($rows);
 }
 
-function addList($id, $name) {
+function addList($id, $name, $board_id) {
   $table_name="lists";
   $con = connect();
-  $query = "INSERT INTO $table_name (id, name) VALUES ($id, '$name') ON DUPLICATE KEY UPDATE name='$name'";
+  $query = "INSERT INTO $table_name (id, name, board_id) VALUES ($id, '$name', $board_id) ON DUPLICATE KEY UPDATE name='$name', board_id=$board_id";
   mysql_query($query);
   mysql_close($con);
 }

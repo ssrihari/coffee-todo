@@ -22,6 +22,9 @@ class @Board
     @boardNameView.click this.makeActive
     @view = $('<div class="board"></div>')
     @view.attr('id', "board-#{@id}")
+    addListView = $('<span class="add-list">+</span>')
+    @view.append(addListView)
+    addListView.click this.addList
     $(".boards").append(@view)
 
   addList: =>

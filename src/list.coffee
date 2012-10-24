@@ -44,6 +44,7 @@ class @List
     $.post "list.php",
       'name': listName
       'id': @id
+      'board_id': @board_id
     , (data) ->
       console.log "List save data: " + data
 
