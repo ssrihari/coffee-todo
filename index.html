@@ -5,12 +5,14 @@
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './lib/list.js'></script>
   <script type="text/javascript" src = './lib/board.js'></script>
+  <script type='text/javascript' src = './vendor/popbox.js'></script>
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Marcellus+SC' />
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/style.css" />
   <link rel="stylesheet" href="./style/board.css" />
   <link rel="stylesheet" href="./style/list.css" />
   <link rel="stylesheet" href="./style/item.css" />
+  <link rel='stylesheet' href='./vendor/popbox.css' type='text/css'>
 
   <title>A Simple ToDo app</title>
 </head>
@@ -18,10 +20,27 @@
   <div class="h1">ToDo</div>
   <div class="board-names"></div>
   <span class="add-board">+</span>
-  <div class="boards">
+  <div class="boards"></div>
+
+  <div class='popbox'>
+    <a class='open' href='#'>Click Here!</a>
+    <div class='collapse'>
+      <div class='box'>
+        <div class='arrow'></div>
+        <div class='arrow-border'></div>
+          <p>Content in PopBox goes here :)</p>
+      </div>
+    </div>
   </div>
   <script>
     $(document).ready(function() {
+      $('.popbox').popbox({
+       'open'          : '.open',
+       'box'           : '.box',
+       'arrow'         : '.arrow',
+       'arrow_border'  : '.arrow_border',
+       'close'         : '.close'
+      });
       Board.init();
       $(".add-board").click(function(){
         Board.all.push(new Board());

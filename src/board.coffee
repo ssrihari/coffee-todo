@@ -8,7 +8,7 @@ class @Board
     @boardNameView = $('<span type="text" class="board-name"></span>')
     @id = (if (id?) then id else Board.COUNT)
 
-    name = prompt("Enter your new Board's name:", "Board") unless name
+    (name = prompt("Enter your new Board's name:", "Board")) unless name
     (if (name) then @boardNameView.text(name) else @boardNameView.text("Board"))
 
     this.setUpView()
