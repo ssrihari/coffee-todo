@@ -32,14 +32,17 @@
       $(".add-board").click(function(){
         Board.all.push(new Board());
       });
-      $(".board-menu").dialog({ autoOpen : false,  closeOnEscape: true });
+      $(".board-menu").dialog({
+        autoOpen : false,
+        closeOnEscape: true,
+        resizable: false
+      });
       $('body').bind('click',function(e){
         if( $(".board-menu").dialog('isOpen')
          && !$(e.target).is('.ui-dialog, a')
          && !$(e.target).closest('.ui-dialog').length
         )
           $(".board-menu").dialog('close');
-
       });
     });
   </script>
