@@ -69,11 +69,18 @@
   background: rgba(240,255,255, 0.3);
 }
 
+div.board-menu {
+  width: 250px;
+  height: auto !important;
+}
 input.new-board-name {
-  border: 1px solid black;
+  color: lightgrey;
+  border: 1px solid grey;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 0.9em;
 }
 input.new-board-name:focus {
-  border: 1px solid black;
+  border: 1px solid grey;
 }
 
 button.delete-board {

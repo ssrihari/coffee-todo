@@ -34,7 +34,9 @@ class @Board
     @boardNameView.text()
 
   menu: =>
-    $(".board-menu").dialog({ title: "[Board menu] #{this.content()}" })
+    left = @boardNameView.position().left
+    top = @boardNameView.position().top + @boardNameView.height() + 10
+    $(".board-menu").dialog("option", { position: [left, top] })
     $("input.new-board-name").val('')
     $("input.new-board-name").keyup this.changeName
     $(".board-menu").dialog("open")
@@ -43,7 +45,7 @@ class @Board
     new_name = $(e.target).val()
     if @boardNameView.hasClass('active') && new_name
       @boardNameView.text(new_name)
-      $(".board-menu").dialog({ title: "[Board menu] #{new_name} " })
+      $(".board-menu").dialog({ title: "#{new_name} " })
       this.save()
 
   save: =>
