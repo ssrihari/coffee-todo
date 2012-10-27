@@ -39,6 +39,7 @@ class @Board
     $(".board-menu").dialog("option", { position: [left, top] })
     $("input.new-board-name").val('')
     $("input.new-board-name").keyup this.changeName
+    $("button.delete-board").click this.delete
     $(".board-menu").dialog("open")
 
   changeName: (e) =>
@@ -75,14 +76,18 @@ class @Board
     @boardNameView.addClass('active')
     console.log("Board #{@id} is now active")
 
-  # delete: =>
-  #   return unless confirm("Are you sure?")
-  #   @view.remove()
-  #   $.post "list.php",
-  #     'delete': true
-  #     'id': @id
-  #   , (data) ->
-  #     console.log "Board save data: " + data
+  delete: =>
+    if @boardNameView.hasClass('active')
+      return unless confirm("Are you sure?")
+      @view.remove()
+      @boardNameView.remove()
+      $(".board-menu").dialog("close")
+      Board.all[Board.all.length - 2].makeActive()
+      $.post "board.php",
+        'delete': true
+        'id': @id
+      , (data) ->
+        console.log "Board save data: " + data
 
   @init: ->
     $.get "board.php",
