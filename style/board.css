@@ -68,3 +68,15 @@
   cursor:hand;
   background: rgba(240,255,255, 0.3);
 }
+
+input.new-board-name {
+  border: 1px solid black;
+}
+input.new-board-name:focus {
+  border: 1px solid black;
+}
+
+button.delete-board {
+  width :100%;
+}
+

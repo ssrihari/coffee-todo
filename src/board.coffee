@@ -18,7 +18,7 @@ class @Board
     boardNamesDiv = $(".board-names")
     boardNamesDiv.append('<p class="board-name-separator">&nbsp|&nbsp</p>')
     boardNamesDiv.append(@boardNameView)
-    @boardNameView.dblclick this.changeName
+    @boardNameView.dblclick this.menu
     @boardNameView.click this.makeActive
     @view = $('<div class="board"></div>')
     @view.attr('id', "board-#{@id}")
@@ -33,10 +33,17 @@ class @Board
   content: =>
     @boardNameView.text()
 
-  changeName: =>
-    name = prompt("Enter your Board's new name:", this.content());
-    if name
-      @boardNameView.text(name)
+  menu: =>
+    $(".board-menu").dialog({ title: "#{this.content()}-menu" })
+    $("input.new-board-name").val('')
+    $("input.new-board-name").keyup this.changeName
+    $(".board-menu").dialog("open")
+
+  changeName: (e) =>
+    new_name = $(e.target).val()
+    if @boardNameView.hasClass('active') && new_name
+      @boardNameView.text(new_name)
+      $(".board-menu").dialog({ title: "#{new_name}-menu" })
       this.save()
 
   save: =>

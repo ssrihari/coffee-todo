@@ -6,14 +6,13 @@
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './lib/list.js'></script>
   <script type="text/javascript" src = './lib/board.js'></script>
-  <script type='text/javascript' src = './vendor/popbox.js'></script>
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Marcellus+SC' />
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/style.css" />
   <link rel="stylesheet" href="./style/board.css" />
   <link rel="stylesheet" href="./style/list.css" />
   <link rel="stylesheet" href="./style/item.css" />
-  <link rel='stylesheet' href='./vendor/popbox.css' type='text/css'>
+  <link rel="stylesheet" href="./vendor/jquery-ui.css" />
 
   <title>A Simple ToDo app</title>
 </head>
@@ -22,12 +21,17 @@
   <div class="board-names"></div>
   <span class="add-board">+</span>
   <div class="boards"></div>
+  <div class="board-menu" title="board-menu">
+    <input type="text" class="new-board-name" placeholder="New Board Name"/>
+    <button class="delete-board">Delete this board</button>
+  </div>
   <script>
     $(document).ready(function() {
       Board.init();
       $(".add-board").click(function(){
         Board.all.push(new Board());
       });
+      $(".board-menu").dialog({ autoOpen : false,  closeOnEscape: true });
     });
   </script>
 </body>
