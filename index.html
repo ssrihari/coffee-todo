@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript" src = './vendor/jquery.js'></script>
+  <script type="text/javascript" src = './vendor/jquery-ui.js'></script>
   <script type="text/javascript" src = './lib/item.js'></script>
   <script type="text/javascript" src = './lib/list.js'></script>
   <script type="text/javascript" src = './lib/board.js'></script>
@@ -21,26 +22,8 @@
   <div class="board-names"></div>
   <span class="add-board">+</span>
   <div class="boards"></div>
-
-  <div class='popbox'>
-    <a class='open' href='#'>Click Here!</a>
-    <div class='collapse'>
-      <div class='box'>
-        <div class='arrow'></div>
-        <div class='arrow-border'></div>
-          <p>Content in PopBox goes here :)</p>
-      </div>
-    </div>
-  </div>
   <script>
     $(document).ready(function() {
-      $('.popbox').popbox({
-       'open'          : '.open',
-       'box'           : '.box',
-       'arrow'         : '.arrow',
-       'arrow_border'  : '.arrow_border',
-       'close'         : '.close'
-      });
       Board.init();
       $(".add-board").click(function(){
         Board.all.push(new Board());
