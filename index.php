@@ -18,7 +18,11 @@
 </head>
 <body>
   <div class="h1">ToDo</div>
-  <div class="login"></div>
+  <?php if (!(isset($_COOKIE['TodoLoginCookie']))) : ?>
+    <div class="login"></div>
+  <?php else : ?>
+    <span class="username"><?= "Hi, ".$_COOKIE['TodoLoginCookie'] ?></span>
+  <?php endif; ?>
   <div class="board-names"></div>
   <span class="add-board">+</span>
   <div class="boards"></div>
@@ -47,6 +51,9 @@
           $(".board-menu").dialog('close');
       });
       $(".ui-dialog-titlebar").hide()
+      $(".login").click(function() {
+        $('<form action="login.php?login" method="post"></form>').submit();
+      });
     });
   </script>
 </body>

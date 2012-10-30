@@ -20,7 +20,6 @@ body {
   vertical-align: top;
   font-size: 2.4em;
   font-family: Impact, Charcoal, sans-serif;
-  color: darkgrey;
   width: 126px;
   height: 47px;
 }
@@ -28,4 +27,13 @@ body {
   background: transparent url('../assets/images/login-small-hover.png') no-repeat;
   color: lightgrey;
   cursor: hand;
+}
+
+.username {
+  float: right;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 2.4em;
+  font-family: Impact, Charcoal, sans-serif;
+  color: darkgrey;
 }
