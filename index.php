@@ -18,11 +18,14 @@
 </head>
 <body>
   <div class="h1">ToDo</div>
+  <div class="login"></div>
   <div class="board-names"></div>
   <span class="add-board">+</span>
   <div class="boards"></div>
   <div class="board-menu">
-    <input type="text" class="new-board-name" placeholder="New Board Name"/> <br /><br />
+    <input type="text" class="new-board-name" placeholder="New Board Name"/>
+    <br />
+    <br />
     <button class="delete-board">Delete this board</button>
   </div>
   <script>

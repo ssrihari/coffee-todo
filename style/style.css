@@ -11,3 +11,21 @@ body {
   display: inline-block;
   vertical-align: top;
 }
+
+.login {
+  background: transparent url('../assets/images/login-small.png') no-repeat;
+
+  float: right;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 2.4em;
+  font-family: Impact, Charcoal, sans-serif;
+  color: darkgrey;
+  width: 126px;
+  height: 47px;
+}
+.login:hover {
+  background: transparent url('../assets/images/login-small-hover.png') no-repeat;
+  color: lightgrey;
+  cursor: hand;
+}
