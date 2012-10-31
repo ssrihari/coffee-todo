@@ -1,5 +1,6 @@
 <html>
 <head>
+  <?php session_start(); ?>
   <meta charset="UTF-8">
   <script type="text/javascript" src = './vendor/jquery.js'></script>
   <script type="text/javascript" src = './vendor/jquery-ui.js'></script>
@@ -18,10 +19,10 @@
 </head>
 <body>
   <div class="h1">ToDo</div>
-  <?php if (!(isset($_COOKIE['TodoLoginCookie']))) : ?>
+  <?php if (!(isset($_SESSION['user_id ']) ) ) : ?>
     <div class="login"></div>
   <?php else : ?>
-    <span class="username"><?= "Hi, ".$_COOKIE['TodoLoginCookie'] ?></span>
+    <span class="username"><?= "Hi, ".$_SESSION['nick'] ?></span>
   <?php endif; ?>
   <div class="board-names"></div>
   <span class="add-board">+</span>

@@ -20,3 +20,9 @@ create table items(
   list_id INT NOT NULL,
   FOREIGN KEY (list_id) REFERENCES lists(id) ON DELETE CASCADE
 ) ENGINE = INNODB;
+
+create table users(
+  id INT NOT NULL AUTO_INCREMENT primary key,
+  identity varchar(100) NOT NULL,
+  email varchar(100)
+) ENGINE = INNODB;
