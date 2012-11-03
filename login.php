@@ -10,12 +10,12 @@ try {
     $openid = new LightOpenID(getenv('HOST_URI'));
     if(!$openid->mode) {
         if(isset($_GET['login'])) {
-            $openid->identity = 'https://www.google.com/accounts/o8/id';
-            $openid->required = array('namePerson', 'contact/email');
             // $openid->returnUrl = 'http://localhost/todo';
+            $openid->identity = 'https://www.google.com/accounts/o8/id';
             echo $openid->authUrl();
             echo "\nfoo ";
             echo getenv('HOST_URI');
+            $openid->required = array('namePerson', 'contact/email');
             // header('Location: ' . $openid->authUrl());
         }
     } elseif($openid->mode == 'cancel') {
