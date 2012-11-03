@@ -7,6 +7,7 @@ require 'user.php';
 
 try {
     # Change 'localhost' to your domain name.
+            echo getenv('HOST_URI');
     $openid = new LightOpenID(getenv('HOST_URI'));
     if(!$openid->mode) {
         if(isset($_GET['login'])) {
@@ -14,7 +15,6 @@ try {
             $openid->identity = 'https://www.google.com/accounts/o8/id';
             echo $openid->authUrl();
             echo "\nfoo ";
-            echo getenv('HOST_URI');
             $openid->required = array('namePerson', 'contact/email');
             // header('Location: ' . $openid->authUrl());
         }
