@@ -57,8 +57,10 @@
         $('<form action="login.php?login" method="post"></form>').submit();
       });
       $(".logout").click(function(){
-        <?php session_destroy(); ?>
-        $('<form action="logout.php" method="post"></form>').submit();
+        if (confirm("Are you sure?")) {
+          <?php session_destroy(); ?>
+          $('<form action="logout.php" method="post"></form>').submit();
+        }
       })
     });
   </script>
