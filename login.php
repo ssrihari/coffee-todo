@@ -7,8 +7,8 @@ require 'user.php';
 
 try {
     # Change 'localhost' to your domain name.
-            echo "changed";
-    $openid = new LightOpenID("2do.phpfogapp.com");
+            echo "changed agian";
+    $openid = new LightOpenID("localhost");
     if(!$openid->mode) {
         if(isset($_GET['login'])) {
             // $openid->returnUrl = 'http://localhost/todo';
