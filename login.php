@@ -13,7 +13,10 @@ try {
             $openid->identity = 'https://www.google.com/accounts/o8/id';
             $openid->required = array('namePerson', 'contact/email');
             // $openid->returnUrl = 'http://localhost/todo';
-            header('Location: ' . $openid->authUrl());
+            echo $openid->authUrl();
+            echo "\nfoo ";
+            echo getenv('HOST_URI');
+            // header('Location: ' . $openid->authUrl());
         }
     } elseif($openid->mode == 'cancel') {
         echo 'User has canceled authentication!';
