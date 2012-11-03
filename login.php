@@ -22,13 +22,13 @@ try {
             $attrs = $openid->getAttributes();
             $user = getUser($openid->identity);
             if(!$user) {
-                createUser('{$openid->identity}', $attrs['contact/email']);
-                $user = getUser('{$openid->identity}');
+                createUser($openid->identity, $attrs['contact/email']);
+                $user = getUser($openid->identity);
                 if(!$user) die("Could not create user");
             }
             $email_ar = explode("@", $attrs['contact/email']);
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['nick']= '$email_ar[0]';
+            $_SESSION['user_id'] = $user[0];
+            $_SESSION['nick']= $email_ar[0];
             $host_uri = getenv('HOST_URI');
             header("Location:  http://$host_uri");
         }

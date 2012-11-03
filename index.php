@@ -19,10 +19,11 @@
 </head>
 <body>
   <div class="h1">ToDo</div>
-  <?php if (!(isset($_SESSION['user_id ']) ) ) : ?>
+  <?php if (isset($_SESSION['user_id ']) ) : ?>
     <div class="login"></div>
   <?php else : ?>
-    <span class="username"><?= "Hi, ".$_SESSION['nick'] ?></span>
+    <div class="logout"></div>
+    <span class="username"><?= "Hi, " . $_SESSION['nick'] ?></span>
   <?php endif; ?>
   <div class="board-names"></div>
   <span class="add-board">+</span>
