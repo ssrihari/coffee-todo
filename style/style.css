@@ -17,15 +17,13 @@ body {
   float: right;
   display: inline-block;
   vertical-align: top;
-  font-size: 2.4em;
-  font-family: Impact, Charcoal, sans-serif;
   width: 126px;
   height: 47px;
+  opacity: 0.5;
 }
 
 .login:hover {
-  background: transparent url('../assets/images/login-small-hover.png') no-repeat;
-  color: lightgrey;
+  opacity: 1.0;
   cursor: hand;
 }
 
