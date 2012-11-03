@@ -7,14 +7,14 @@ require 'user.php';
 
 try {
     # Change 'localhost' to your domain name.
-            echo "changed agian";
+            echo " agian";
     $openid = new LightOpenID("localhost");
     if(!$openid->mode) {
         if(isset($_GET['login'])) {
             // $openid->returnUrl = 'http://localhost/todo';
+            echo "\nfoo ";
             $openid->identity = 'https://www.google.com/accounts/o8/id';
             echo $openid->authUrl();
-            echo "\nfoo ";
             $openid->required = array('namePerson', 'contact/email');
             // header('Location: ' . $openid->authUrl());
         }
