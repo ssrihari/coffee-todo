@@ -1,30 +1,32 @@
 class @Board
   @COUNT: 0
   @all: []
+  @DEFAULT_NAME: "Board"
 
   constructor: (id, name) ->
     Board.COUNT++
     @lists = []
     @boardNameView = $('<span type="text" class="board-name"></span>')
-    @id = (if (id?) then id else Board.COUNT)
+    @id = if id? then id else Board.COUNT
+    @setName(name)
+    @setUpView()
+    @save()
 
-    (name = prompt("Enter your new Board's name:", "Board")) unless name
-    (if (name) then @boardNameView.text(name) else @boardNameView.text("Board"))
-
-    this.setUpView()
-    this.save()
+  setName:(name) =>
+    name = prompt("Enter your new Board's name:", "Board") unless name
+    if name then @boardNameView.text(name) else @boardNameView.text(Board.DEFAULT_NAME)
 
   setUpView: =>
     boardNamesDiv = $(".board-names")
     boardNamesDiv.append('<p class="board-name-separator">&nbsp|&nbsp</p>')
     boardNamesDiv.append(@boardNameView)
-    @boardNameView.dblclick this.menu
-    @boardNameView.click this.makeActive
+    @boardNameView.dblclick @menu
+    @boardNameView.click @makeActive
     @view = $('<div class="board"></div>')
     @view.attr('id', "board-#{@id}")
     addListView = $('<span class="add-list">+</span>')
     @view.append(addListView)
-    addListView.click this.addList
+    addListView.click @addList
     $(".boards").append(@view)
 
   addList: =>
@@ -38,8 +40,8 @@ class @Board
     top = @boardNameView.position().top + @boardNameView.height() + 10
     $(".board-menu").dialog("option", { position: [left, top] })
     $("input.new-board-name").val('')
-    $("input.new-board-name").keyup this.changeName
-    $("button.delete-board").click this.delete
+    $("input.new-board-name").keyup @changeName
+    $("button.delete-board").click @delete
     $(".board-menu").dialog("open")
 
   changeName: (e) =>
@@ -47,10 +49,10 @@ class @Board
     if @boardNameView.hasClass('active') && new_name
       @boardNameView.text(new_name)
       $(".board-menu").dialog({ title: "#{new_name} " })
-      this.save()
+      @save()
 
   save: =>
-    boardName = this.content()
+    boardName = @content()
     $.post "board.php",
       'name': boardName
       'id': @id

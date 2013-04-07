@@ -31,11 +31,11 @@
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  cursor:hand
+  cursor: pointer
 }
 .add-item:hover {
   font-weight: bold;
-  cursor:hand
+  cursor: pointer;
 }
 
 .list-delete {
@@ -43,7 +43,7 @@
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: darkgrey;
   float: right;
-  cursor: hand;
+  cursor: pointer;
   padding-bottom: 6px;
   padding-left: 6px;
 }
@@ -51,5 +51,5 @@
 .list-delete:hover {
   color: lightgrey;
   font-weight: bold;
-  cursor:hand
+  cursor: pointer
 }

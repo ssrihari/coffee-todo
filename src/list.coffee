@@ -1,31 +1,37 @@
 class @List
   @COUNT: 0
+  @DEFAULT_NAME: "List"
 
   constructor: (board_id, id, name) ->
     #TODO Refactor to fit pattern as in Board
     List.COUNT++
     @board_id = board_id
     @items = []
-    @input = $('<input type="text"/>')
-    @input.keyup this.save
-    @id = (if (id?) then id else List.COUNT)
-    (if (name?) then @input.val(name) else @input.val("List"))
+    @setUpName(name)
+    @id = if id? then id else List.COUNT
 
-    @input.attr('id', "list-#{@id}-name")
-    @view = this.setUpView()
+    @view = @setUpView()
     $("#board-#{@board_id}").append(@view)
-    this.save()
+    @save()
+
+  setUpName:(name) =>
+    @name = $('<input type="text"/>')
+    @name.keyup @save
+    if name? then @name.val(name) else @name.val(List.DEFAULT_NAME)
+    console.log "this is default name :" + @DEFAULT_NAME
+    console.log "set name is:" + @name.val()
+    @name.attr('id', "list-#{@id}-name")
 
   setUpView: =>
     listContainer = $('<div class="list-container"></div>')
     listDeleteDiv = $('<div class="list-delete"><p>x</p></div>')
-    listDeleteDiv.click this.delete
+    listDeleteDiv.click @delete
     listNameDiv = $('<div class="list-name"></div>')
-    listNameDiv.append(@input)
+    listNameDiv.append(@name)
     listItemsDiv = $('<div class="list-items"></div>')
     listItemsDiv.attr('id', "list-#{@id}-items")
     addItemDiv = $('<div class="add-item">+</div>')
-    addItemDiv.click this.addItem
+    addItemDiv.click @addItem
     listContainer.append(listDeleteDiv)
     listContainer.append(listNameDiv)
     listContainer.append(listItemsDiv)
@@ -37,10 +43,10 @@ class @List
     @items.push new Item(@id)
 
   content: =>
-    @input.val()
+    @name.val()
 
   save: =>
-    listName = this.content()
+    listName = @content()
     $.post "list.php",
       'name': listName
       'id': @id
